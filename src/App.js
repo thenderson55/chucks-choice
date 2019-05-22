@@ -6,6 +6,7 @@ import SkyScanner from './SkyScanner'
 import Chuck from './assets/chuck.jpg'
 import './App.css';
 import GeoLocate from './GeoLocate';
+import Airport from './Airport';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <ChucksJoke />
         <img src={logo} className="App-logo-small" alt="logo" />
         <SkyScanner />
+        <Airport/>
         <a
           className="App-link"
           href="https://reactjs.org"
