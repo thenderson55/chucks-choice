@@ -1,6 +1,5 @@
 import React from "react";
 require('dotenv').config()
-console.log(process.env)
 
 
 export default class Quote extends React.Component {
