@@ -20,8 +20,9 @@ export default class SkyScanner extends React.Component {
     myHeadersOne.append(
       "X-RapidAPI-Key", process.env.REACT_APP_API_RAPID
     );
+    // myHeadersOne.append('Access-Control-Allow-Origin':'*')
 
-    const myInit = { method: "GET", headers: myHeadersOne };
+    const myInit = { method: "GET", mode: 'cors', headers: myHeadersOne };
 
     const myRequestOne = new Request(
       "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/SFO-sky/JFK-sky/2019-10-01?inboundpartialdate=2019-09-01",
