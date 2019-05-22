@@ -5,6 +5,7 @@ import Quote from './Quote'
 import SkyScanner from './SkyScanner'
 import Chuck from './assets/chuck.jpg'
 import './App.css';
+import GeoLocate from './GeoLocate';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Quote />
+        <GeoLocate />
         <img src={Chuck} className="animated fadeInLeftBig delay-2s" alt="cuck"  />
         <ChucksJoke />
         <img src={logo} className="App-logo-small" alt="logo" />
