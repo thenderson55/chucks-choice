@@ -25,6 +25,24 @@ app.get("/api", async (req,res)=>{
   } catch (error) {
     console.log(error)
   }
+})
+
+  app.get("/api/airport/:lat/:lng", async (req,res)=>{
+    console.log("API for Lat/Long reached")
+    try {
+      const {data}= await axios({
+        method:"GET",
+        url: "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/by-radius?radius=5&lng=" + req.params.lng + "&lat=" + req.params.lat,
+        headers:{
+          "X-RapidAPI-Host": "cometari-airportsfinder-v1.p.rapidapi.com",
+          "X-RapidAPI-Key": "7d7bfe061cmshefc4d86ad1c6bbcp153a98jsn9f51d76aca44"
+        }
+      })
+      res.send(data)
+    } catch (error) {
+      console.log(error)
+    }
+  })
   // const myHeadersOne = new Headers();
   //   myHeadersOne.append(
   //     "X-RapidAPI-Host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
@@ -51,4 +69,4 @@ app.get("/api", async (req,res)=>{
     //     // })
     //   );
  
-})
+
