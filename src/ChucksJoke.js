@@ -1,6 +1,8 @@
 import React from "react";
+require('dotenv').config()
 
-export default class ApiOne extends React.Component {
+
+export default class ChucksJoke extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -16,7 +18,8 @@ export default class ApiOne extends React.Component {
     );
     myHeaders.append(
       "X-RapidAPI-Key",
-      "5456615b4cmsh40eaeb350692ccep17bbe1jsn2758aaa3f720"
+      
+      process.env.REACT_APP_API_RAPID
     );
     myHeaders.append("accept", "application/json");
 
