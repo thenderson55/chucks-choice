@@ -3,6 +3,11 @@
   overflow-x: hidden;
 }
 
+
+#chuck-photo {
+  cursor: url('./assets/fist.png'), pointer;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
