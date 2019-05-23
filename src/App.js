@@ -9,6 +9,7 @@ import RightPanel from "./RightPanel";
 import "./App.css";
 import Unsplash, { toJson } from "unsplash-js";
 import axios from "axios";
+import audio_clip from './assets/chucknorris.mp3'
 
 const unsplash = new Unsplash({
   applicationId:
@@ -41,7 +42,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // .get("/api/location")
     axios({
       method: "POST",
       url: `https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCtjoNwnlu5EecNRzewqL95uS9hfnUljIU`
@@ -98,6 +98,9 @@ class App extends React.Component {
   }
 
   handleClick = (event) => {
+    const audio = new Audio(audio_clip);
+    audio.play();
+
     let classes = event.target.classList;
     classes.remove('first-cursor')
     let photo = event.target;
