@@ -45,25 +45,22 @@ class App extends React.Component {
         });
       })
       .then(() => {
-        axios
+        return axios
           .get(`/api/city/${this.state.lat}/${this.state.lng}`)
           .then((obj) => {
             this.setState({ city: obj.data.city, cityCode: obj.data.cityCode });
           });
       })
       .then(() => {
-        axios.get(`/api/flights/TYO/JFK/2019-05-28`).then((res) => {
-          console.log("Got to fliughts", res.data);
+        return axios.get(`/api/flights/TYO/JFK/2019-05-28`).then((res) => {
           this.setState({ price: res.data });
         });
       })
       .then(() => {
-        console.log(typeof this.state.city, this.state.city);
-        unsplash.search
-          .photos("New York", 1)
+        return unsplash.search
+          .photos(this.state.city, 1)
           .then(toJson)
           .then((json) => {
-            console.log("json", json);
             this.setState({
               img: json.results[0].urls.small
             });
@@ -128,7 +125,7 @@ class App extends React.Component {
                     src={this.state.img}
                     className="animated fadeInDown delay-.25s"
                     onClick={this.handleClick}
-                    alt="cuck"
+                    alt="chuck"
                   />
                 </div>
                 <div className="col-sm animated fadeInRightBig delay-.25s">
