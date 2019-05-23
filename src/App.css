@@ -3,8 +3,7 @@
   overflow-x: hidden;
 }
 
-
-#chuck-photo {
+.fist-cursor {
   cursor: url('./assets/fist.png'), pointer;
 }
 
