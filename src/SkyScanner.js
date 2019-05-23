@@ -15,7 +15,7 @@ export default class SkyScanner extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("/api").then(res=>{
+    axios.get("/api/skyScanner").then(res=>{
       this.setState({
           minPrice: res.data.Quotes[0].MinPrice,
           departure: res.data.Places[0].Name,
