@@ -75,6 +75,7 @@ class App extends React.Component {
 
   handleClick = (event) => {
     let classes = event.target.classList;
+    classes.remove('first-cursor')
     let photo = event.target;
     // photo.style.display = 'none';
 
@@ -115,7 +116,7 @@ class App extends React.Component {
             <div className="">
               <img
                 src={this.state.chuck}
-                className="animated fadeInLeftBig delay-0.25s"
+                className="fist-cursor animated fadeInLeftBig delay-0.25s"
                 onClick={this.handleClick}
                 alt="chuck"
               />
@@ -134,7 +135,7 @@ class App extends React.Component {
                       src={this.state.img}
                       className="animated fadeInDown delay-.25s"
                       onClick={this.handleClick}
-                      alt="cuck"
+                      alt="chuck"
                     />
                   </div>
                   <div className="col-sm animated fadeInRightBig delay-.25s panel">
