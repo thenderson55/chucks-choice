@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 
-import Axios from "axios";
-
-
 export default class LeftPanel extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +17,7 @@ export default class LeftPanel extends Component {
   render() {
     return (
       <div>
-        <h3>{`You are going to New Yk`}</h3>
+        <h3>{`You are going to New York`}</h3>
         <h4>{`You can book a flight from ${
           this.props.city
         } to New York on ${this.props.date.slice(0, 10)} for $ ${

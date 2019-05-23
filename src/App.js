@@ -1,8 +1,6 @@
 import React from "react";
-import logo from "./logo.svg";
 import ChucksJoke from "./ChucksJoke";
 // import Quote from "./Quote";
-import SkyScanner from "./SkyScanner";
 import Chuck from "./assets/chuck.jpg";
 import LeftPanel from "./LeftPanel";
 import RightPanel from "./RightPanel";
@@ -93,25 +91,16 @@ class App extends React.Component {
             });
           });
       });
-
-    // const ranNum = Math.floor(Math.random() * 10) + 1;
   }
 
   handleClick = (event) => {
+    //first play the audio
     const audio = new Audio(audio_clip);
     audio.play();
-
     let classes = event.target.classList;
+    //then remove the fist cursor icon
     classes.remove('first-cursor')
-    let photo = event.target;
-    // photo.style.display = 'none';
-
-    // const change = () => {
-    //   photo.src = `${this.state.img}`;
-    //   classes.remove("animated", "fadeOutRightBig");
-    //   classes.add("animated", "fadeInDown", "delay-1s");
-    // };
-
+    //then animate
     classes.remove("animated", "fadeInLeftBig", "delay-2s");
     classes.add("animated", "shake");
     setTimeout(() => {
@@ -190,7 +179,6 @@ class App extends React.Component {
           {/* style={{display: this.state.showInfo ? 'block' : 'none' }} */}
 
           {/* <button onClick={this.resetButton}>Reset</button> */}
-          {/* <SkyScanner /> */}
         </header>
       </div>
     );
@@ -199,7 +187,7 @@ class App extends React.Component {
 
 export default App;
 
-{
+
   /* <a
   className="App-link"
   href="https://codechrysalis.io/cc7"
@@ -208,4 +196,4 @@ export default App;
 >
  Team Cobra - Saviours of the Universe!!!
 </a> */
-}
+
