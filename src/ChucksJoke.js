@@ -1,6 +1,5 @@
 import React from "react";
-require('dotenv').config()
-
+require("dotenv").config();
 
 export default class ChucksJoke extends React.Component {
   constructor() {
@@ -18,8 +17,8 @@ export default class ChucksJoke extends React.Component {
     );
     myHeaders.append(
       "X-RapidAPI-Key",
-      
-      process.env.REACT_APP_API_RAPID
+
+      "efe599f8f6msh4a33ff28e73ed1ep16d441jsn618888df975b"
     );
     myHeaders.append("accept", "application/json");
 
@@ -31,8 +30,8 @@ export default class ChucksJoke extends React.Component {
     );
 
     fetch(myRequest)
-      .then(res => res.json())
-      .then(data =>
+      .then((res) => res.json())
+      .then((data) =>
         this.setState({
           joke: data.value
         })
@@ -42,10 +41,6 @@ export default class ChucksJoke extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>
-          Ready to have your mind blown and be destroyed by a single Chuck
-          Norris joke!
-        </h1>
         <h2>{this.state.joke}</h2>
       </div>
     );
