@@ -114,6 +114,7 @@ class App extends React.Component {
           {this.state.clicked === false && (
             <div className="">
               <img
+                id="chuck-photo"
                 src={this.state.chuck}
                 className="animated fadeInLeftBig delay-0.25s"
                 onClick={this.handleClick}
