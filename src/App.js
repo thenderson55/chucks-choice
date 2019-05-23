@@ -41,8 +41,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get("/api/location")
+    // .get("/api/location")
+    axios({
+      method: "POST",
+      url: `https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCtjoNwnlu5EecNRzewqL95uS9hfnUljIU`
+    })
       .then((data) => {
         this.setState({
           lat: data.data.location.lat,
