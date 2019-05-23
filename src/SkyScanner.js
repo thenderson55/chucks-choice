@@ -27,7 +27,7 @@ export default class SkyScanner extends React.Component {
   render() {
     return (
       <div className="container">
-        <h2>{this.state.departure}  tdo  {this.state.arrival}- £{this.state.minPrice}</h2>
+        <h2>{this.state.departure}  to  {this.state.arrival}- £{this.state.minPrice}</h2>
       </div>
     );
   }

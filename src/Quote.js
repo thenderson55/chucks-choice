@@ -38,7 +38,7 @@ export default class Quote extends React.Component {
   render() {
     return (
       <div className="container">
-        <h2>{this.state.quote}</h2>
+        <h2 className="yay">{this.state.quote}</h2>
       </div>
     );
   }
