@@ -31,7 +31,12 @@ class App extends React.Component {
       price: "",
       chuck: Chuck,
       clicked: false,
-      showInfo: false
+      showInfo: false,
+      temperature: "",
+      summary: "",
+      flightsData: "",
+      date: "",
+      carrier: ""
     };
   }
 
@@ -52,9 +57,18 @@ class App extends React.Component {
           });
       })
       .then(() => {
-        return axios.get(`/api/flights/TYO/JFK/2019-05-28`).then((res) => {
-          this.setState({ price: res.data });
-        });
+        return axios
+          .get(`/api/flights/${this.state.cityCode}/JFK/2019-05-28`)
+          .then((res) => {
+            console.log(res.data);
+
+            this.setState({
+              price: res.data.Quotes[0].MinPrice,
+              date: res.data.Quotes[0].OutboundLeg.DepartureDate,
+              carrier: res.data.Quotes[0].OutboundLeg.CarrierIds[0],
+              flightsData: res.data
+            });
+          });
       })
       .then(() => {
         return unsplash.search
@@ -63,6 +77,16 @@ class App extends React.Component {
           .then((json) => {
             this.setState({
               img: json.results[0].urls.small
+            });
+          });
+      })
+      .then(() => {
+        axios
+          .get(`/api/weather/${this.state.lat}/${this.state.lng}`)
+          .then((res) => {
+            this.setState({
+              temperature: `${res.data.currently.temperature}°C`,
+              summary: res.data.currently.summary
             });
           });
       });
@@ -118,7 +142,14 @@ class App extends React.Component {
             <div className="container">
               <div className="row">
                 <div className="col-sm animated fadeInLeftBig delay-.25s">
-                  <LeftPanel />
+                  <LeftPanel
+                    flightsData={this.state.flightsData}
+                    carrier={this.state.carrier}
+                    date={this.state.date}
+                    city={this.state.city}
+                    cityCode={this.state.cityCode}
+                    price={this.state.price}
+                  />
                 </div>
                 <div className="col-sm">
                   <img
@@ -129,7 +160,10 @@ class App extends React.Component {
                   />
                 </div>
                 <div className="col-sm animated fadeInRightBig delay-.25s">
-                  <RightPanel />
+                  <RightPanel
+                    temperature={this.state.temperature}
+                    summary={this.state.summary}
+                  />
                 </div>
               </div>
             </div>
