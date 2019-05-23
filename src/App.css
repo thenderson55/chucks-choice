@@ -33,6 +33,48 @@
   color: pink;
 }
 
+.joke {
+  font-family: Bitwise;
+  font-size: 3rem;
+  margin: 30px;
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@font-face {
+  font-family: Stuff;
+  font-weight: bold;
+  src: url("./assets/ENDLESSBUMMER.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Arcade;
+  font-weight: bold;
+  src: url("./assets/arcade.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: Bitwise;
+  font-weight: bold;
+  src: url("./assets/bitwise.ttf") format("opentype");
+}
+
+.header {
+  font-family: Stuff;
+  font-size: 10rem;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.sub-header {
+  font-family: Stuff;
+  font-size: 3rem;
+  margin: 30px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
