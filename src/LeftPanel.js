@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import Axios from "axios";
+
+
 export default class LeftPanel extends Component {
   constructor(props) {
     super(props);
@@ -7,19 +10,22 @@ export default class LeftPanel extends Component {
       lat: "",
       lng: "",
       city: ""
-      // flightInfo:
-      //   "You are flying from Tokyo to Helsinki, Sweden on the 28th for £420!"
     };
   }
 
   componentDidMount() {
-    console.log("Left Panel Did Mount");
+    fetch("/connect").then(console.log);
   }
 
   render() {
     return (
       <div>
-        <h3>You are flying from Tokyo to New York, on the 28th!</h3>
+        <h3>{`You are going to New Yk`}</h3>
+        <h4>{`You can book a flight from ${
+          this.props.city
+        } to New York on ${this.props.date.slice(0, 10)} for $ ${
+          this.props.price
+        }`}</h4>
       </div>
     );
   }

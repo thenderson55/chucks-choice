@@ -31,13 +31,21 @@ class App extends React.Component {
       price: "",
       chuck: Chuck,
       clicked: false,
-      showInfo: false
+      showInfo: false,
+      temperature: "",
+      summary: "",
+      flightsData: "",
+      date: "",
+      carrier: ""
     };
   }
 
   componentDidMount() {
-    axios
-      .get("/api/location")
+    // .get("/api/location")
+    axios({
+      method: "POST",
+      url: `https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCtjoNwnlu5EecNRzewqL95uS9hfnUljIU`
+    })
       .then((data) => {
         this.setState({
           lat: data.data.location.lat,
@@ -45,27 +53,43 @@ class App extends React.Component {
         });
       })
       .then(() => {
-        axios
+        return axios
           .get(`/api/city/${this.state.lat}/${this.state.lng}`)
           .then((obj) => {
             this.setState({ city: obj.data.city, cityCode: obj.data.cityCode });
           });
       })
       .then(() => {
-        axios.get(`/api/flights/TYO/JFK/2019-05-28`).then((res) => {
-          console.log("Got to fliughts", res.data);
-          this.setState({ price: res.data });
-        });
+        return axios
+          .get(`/api/flights/${this.state.cityCode}/JFK/2019-05-28`)
+          .then((res) => {
+            console.log(res.data);
+
+            this.setState({
+              price: res.data.Quotes[0].MinPrice,
+              date: res.data.Quotes[0].OutboundLeg.DepartureDate,
+              carrier: res.data.Quotes[0].OutboundLeg.CarrierIds[0],
+              flightsData: res.data
+            });
+          });
       })
       .then(() => {
-        console.log(typeof this.state.city, this.state.city);
-        unsplash.search
-          .photos("New York", 1)
+        return unsplash.search
+          .photos(this.state.city, 1)
           .then(toJson)
           .then((json) => {
-            console.log("json", json);
             this.setState({
               img: json.results[0].urls.small
+            });
+          });
+      })
+      .then(() => {
+        axios
+          .get(`/api/weather/${this.state.lat}/${this.state.lng}`)
+          .then((res) => {
+            this.setState({
+              temperature: `${res.data.currently.temperature}°C`,
+              summary: res.data.currently.summary
             });
           });
       });
@@ -123,24 +147,32 @@ class App extends React.Component {
             </div>
           )}
           {this.state.clicked === true && (
-            <div>
 
-              <div className="container">
-                <div className="row">
-                  <div className="col-sm animated fadeInLeftBig delay-.25s panel">
-                    <LeftPanel />
-                  </div>
-                  <div className="col-sm">
-                    <img
-                      src={this.state.img}
-                      className="animated fadeInDown delay-.25s"
-                      onClick={this.handleClick}
-                      alt="chuck"
-                    />
-                  </div>
-                  <div className="col-sm animated fadeInRightBig delay-.25s panel">
-                    <RightPanel />
-                  </div>
+            <div className="container">
+              <div className="row">
+                <div className="col-sm animated fadeInLeftBig delay-.25s">
+                  <LeftPanel
+                    flightsData={this.state.flightsData}
+                    carrier={this.state.carrier}
+                    date={this.state.date}
+                    city={this.state.city}
+                    cityCode={this.state.cityCode}
+                    price={this.state.price}
+                  />
+                </div>
+                <div className="col-sm">
+                  <img
+                    src={this.state.img}
+                    className="animated fadeInDown delay-.25s"
+                    onClick={this.handleClick}
+                    alt="chuck"
+                  />
+                </div>
+                <div className="col-sm animated fadeInRightBig delay-.25s">
+                  <RightPanel
+                    temperature={this.state.temperature}
+                    summary={this.state.summary}
+                  />
                 </div>
               </div>
               <div className="animated slideInUp delay-.25s">
