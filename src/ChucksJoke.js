@@ -40,8 +40,9 @@ export default class ChucksJoke extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <h2>{this.state.joke}</h2>
+      <div className="container joke">
+        
+        {this.state.joke}
       </div>
     );
   }
