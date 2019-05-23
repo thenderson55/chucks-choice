@@ -6,14 +6,18 @@ import SkyScanner from './SkyScanner'
 import Chuck from './assets/chuck.jpg'
 import './App.css';
 import GeoLocate from './GeoLocate';
+// import Weather from './Weather'
 
 
 function App() {
   return (
+    
     <div className="App">
+   
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Quote />
+        
         <GeoLocate />
         <img src={Chuck} className="animated fadeInLeftBig delay-2s" alt="cuck"  />
         <ChucksJoke />
