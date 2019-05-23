@@ -103,6 +103,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <div >
+            <h1 className="header">CHUCK CHOOSES!</h1>
+            <h4 className="sub-header">YOUR NEXT VACATION</h4>
+          </div>
           <div className="animated shake quote">
             {/* <Quote className="yay" /> */}
           </div>
@@ -118,29 +122,37 @@ class App extends React.Component {
             </div>
           )}
           {this.state.clicked === true && (
-            <div className="container">
-              <div className="row">
-                <div className="col-sm animated fadeInLeftBig delay-.25s">
-                  <LeftPanel />
-                </div>
-                <div className="col-sm">
-                  <img
-                    src={this.state.img}
-                    className="animated fadeInDown delay-.25s"
-                    onClick={this.handleClick}
-                    alt="cuck"
-                  />
-                </div>
-                <div className="col-sm animated fadeInRightBig delay-.25s">
-                  <RightPanel />
+            <div>
+
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm animated fadeInLeftBig delay-.25s panel">
+                    <LeftPanel />
+                  </div>
+                  <div className="col-sm">
+                    <img
+                      src={this.state.img}
+                      className="animated fadeInDown delay-.25s"
+                      onClick={this.handleClick}
+                      alt="cuck"
+                    />
+                  </div>
+                  <div className="col-sm animated fadeInRightBig delay-.25s panel">
+                    <RightPanel />
+                  </div>
                 </div>
               </div>
+              <div className="animated slideInUp delay-.25s">
+                <ChucksJoke />
+              </div>
+
             </div>
           )}
+        <div className="App-logo-small fadeIn">
 
+        </div>
           {/* style={{display: this.state.showInfo ? 'block' : 'none' }} */}
 
-          <ChucksJoke />
           {/* <button onClick={this.resetButton}>Reset</button> */}
           {/* <SkyScanner /> */}
         </header>
