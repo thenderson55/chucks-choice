@@ -1,6 +1,5 @@
 import React from "react";
-require('dotenv').config()
-
+require("dotenv").config();
 
 export default class Quote extends React.Component {
   constructor() {
@@ -13,10 +12,12 @@ export default class Quote extends React.Component {
   componentDidMount() {
     const myHeadersOne = new Headers();
     myHeadersOne.append(
-      "X-RapidAPI-Host", "andruxnet-random-famous-quotes.p.rapidapi.com"
+      "X-RapidAPI-Host",
+      "andruxnet-random-famous-quotes.p.rapidapi.com"
     );
     myHeadersOne.append(
-      "X-RapidAPI-Key", process.env.REACT_APP_API_RAPID
+      "X-RapidAPI-Key",
+      "efe599f8f6msh4a33ff28e73ed1ep16d441jsn618888df975b"
     );
 
     const myInit = { method: "GET", headers: myHeadersOne };
@@ -27,14 +28,14 @@ export default class Quote extends React.Component {
     );
 
     fetch(myRequestOne)
-      .then(res => res.json())
-      .then(data =>
+      .then((res) => res.json())
+      .then((data) =>
         this.setState({
           quote: data[0].quote
         })
       );
   }
- 
+
   render() {
     return (
       <div className="container">
