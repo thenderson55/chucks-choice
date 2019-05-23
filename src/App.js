@@ -99,6 +99,7 @@ class App extends React.Component {
 
   handleClick = (event) => {
     let classes = event.target.classList;
+    classes.remove('first-cursor')
     let photo = event.target;
     // photo.style.display = 'none';
 
@@ -127,6 +128,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <div >
+            <h1 className="header">CHUCK CHOOSES!</h1>
+            <h4 className="sub-header">YOUR NEXT VACATION</h4>
+          </div>
           <div className="animated shake quote">
             {/* <Quote className="yay" /> */}
           </div>
@@ -135,13 +140,14 @@ class App extends React.Component {
             <div className="">
               <img
                 src={this.state.chuck}
-                className="animated fadeInLeftBig delay-0.25s"
+                className="fist-cursor animated fadeInLeftBig delay-0.25s"
                 onClick={this.handleClick}
                 alt="chuck"
               />
             </div>
           )}
           {this.state.clicked === true && (
+
             <div className="container">
               <div className="row">
                 <div className="col-sm animated fadeInLeftBig delay-.25s">
@@ -169,12 +175,17 @@ class App extends React.Component {
                   />
                 </div>
               </div>
+              <div className="animated slideInUp delay-.25s">
+                <ChucksJoke />
+              </div>
+
             </div>
           )}
+        <div className="App-logo-small fadeIn">
 
+        </div>
           {/* style={{display: this.state.showInfo ? 'block' : 'none' }} */}
 
-          <ChucksJoke />
           {/* <button onClick={this.resetButton}>Reset</button> */}
           {/* <SkyScanner /> */}
         </header>
