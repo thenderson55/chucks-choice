@@ -89,3 +89,7 @@ app.get("/api/city/:lat/:lng", async (req, res) => {
     res.end();
   }
 });
+
+app.get("/connect", async (req, res) => {
+  res.send("Connected");
+});
