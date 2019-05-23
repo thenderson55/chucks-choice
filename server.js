@@ -16,7 +16,7 @@ const server = app.listen(port, () => {
 app.get("/api/flights/:org/:dest/:date", async (req, res) => {
   const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${
     req.params.org
-  }-sky/${req.params.dest}-sky/${req.params.date}?inboundpartialdate=${
+  }/${req.params.dest}/${req.params.date}?inboundpartialdate=${
     req.params.date
   }`;
   try {
