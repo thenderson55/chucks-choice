@@ -5,7 +5,7 @@ export default class LeftPanel extends Component {
     super(props);
     this.state = {
       lat: "",
-      lng: "",
+      lng: ""
     };
   }
 
