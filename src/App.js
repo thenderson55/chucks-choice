@@ -9,7 +9,9 @@ import RightPanel from "./RightPanel";
 import "./App.css";
 import Unsplash, { toJson } from "unsplash-js";
 import axios from "axios";
+import audio_clip from "./assets/chucknorris.mp3"
 require("dotenv").config()
+
 
 const unsplash = new Unsplash({
   applicationId:
@@ -113,6 +115,8 @@ class App extends React.Component {
   }
 
   handleClick = (event) => {
+    const audio = new Audio(audio_clip)
+    audio.play()
     let classes = event.target.classList;
     classes.remove('first-cursor')
     let photo = event.target;
