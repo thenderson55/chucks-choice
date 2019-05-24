@@ -7,10 +7,10 @@ import RightPanel from "./RightPanel";
 import "./App.css";
 import Unsplash, { toJson } from "unsplash-js";
 import axios from "axios";
+import audio_clip from './assets/chucknorris.mp3'
 
 require("dotenv").config()
 
-import audio_clip from './assets/chucknorris.mp3'
 
 
 const unsplash = new Unsplash({

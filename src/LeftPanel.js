@@ -15,8 +15,8 @@ export default class LeftPanel extends Component {
 
   render() {
     return (
-      <div>
-        <h3>{`You are flying from ${
+      <div className="header">
+        <h3 className="header-h">{`You are flying from ${
           this.props.city
         } to ${this.props.destination.city} on ${this.props.date.slice(0, 10)} for $ ${
           this.props.price
