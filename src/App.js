@@ -91,7 +91,7 @@ class App extends React.Component {
       })
       .then(() => {
         return unsplash.search
-          .photos(this.state.city, 1)
+          .photos(this.state.destination.city, 1)
           .then(toJson)
           .then((json) => {
             this.setState({
