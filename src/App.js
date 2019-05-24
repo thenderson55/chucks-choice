@@ -7,7 +7,11 @@ import RightPanel from "./RightPanel";
 import "./App.css";
 import Unsplash, { toJson } from "unsplash-js";
 import axios from "axios";
+
+require("dotenv").config()
+
 import audio_clip from './assets/chucknorris.mp3'
+
 
 const unsplash = new Unsplash({
   applicationId:
@@ -22,6 +26,18 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      ranImg:()=>{
+        let destination = 0;
+        const destList = [{city:"New York",cityCode:"JFK"},{city:"San Francisco",cityCode:"SFO"},{city:"Abu Dhabi",cityCode:"DOH"},{city:"Hawaii",cityCode:"HNL"}]
+        const ranNum = Math.floor(Math.random() * 3)
+
+        for (let i = 0; i < destList.length; i++) {
+          if(i=== ranNum){
+            destination = destList[i]
+          }
+       }
+        return destination;
+      },
       img: "",
       city: "",
       cityCode: "",
@@ -35,14 +51,15 @@ class App extends React.Component {
       summary: "",
       flightsData: "",
       date: "",
-      carrier: ""
+      carrier: "",
+      destination:""
     };
   }
 
   componentDidMount() {
     axios({
       method: "POST",
-      url: `https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCtjoNwnlu5EecNRzewqL95uS9hfnUljIU`
+      url: `https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_API_GEOLOCATE}`
     })
       .then((data) => {
         this.setState({
@@ -58,11 +75,12 @@ class App extends React.Component {
           });
       })
       .then(() => {
+        this.setState({
+          destination:this.state.ranImg()
+        })
         return axios
-          .get(`/api/flights/${this.state.cityCode}/JFK/2019-05-28`)
+          .get(`/api/flights/${this.state.cityCode}/${this.state.destination.cityCode}-sky/2019-05-28`)
           .then((res) => {
-            console.log(res.data);
-
             this.setState({
               price: res.data.Quotes[0].MinPrice,
               date: res.data.Quotes[0].OutboundLeg.DepartureDate,
@@ -144,6 +162,7 @@ class App extends React.Component {
               <div className="row">
                 <div className="col-sm animated fadeInLeftBig delay-.25s">
                   <LeftPanel
+                    destination={this.state.destination}
                     flightsData={this.state.flightsData}
                     carrier={this.state.carrier}
                     date={this.state.date}

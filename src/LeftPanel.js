@@ -6,7 +6,6 @@ export default class LeftPanel extends Component {
     this.state = {
       lat: "",
       lng: "",
-      city: ""
     };
   }
 
@@ -17,12 +16,11 @@ export default class LeftPanel extends Component {
   render() {
     return (
       <div>
-        <h3>{`You are going to New York`}</h3>
-        <h4>{`You can book a flight from ${
+        <h3>{`You are flying from ${
           this.props.city
-        } to New York on ${this.props.date.slice(0, 10)} for $ ${
+        } to ${this.props.destination.city} on ${this.props.date.slice(0, 10)} for $ ${
           this.props.price
-        }`}</h4>
+        }`}</h3>
       </div>
     );
   }
