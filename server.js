@@ -26,7 +26,7 @@ app.get("/api/flights/:org/:dest/:date", async (req, res) => {
       headers: {
         "X-RapidAPI-Host":
           "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-        "X-RapidAPI-Key": "5456615b4cmsh40eaeb350692ccep17bbe1jsn2758aaa3f720"
+        "X-RapidAPI-Key":process.env.REACT_APP_API_RAPID
       }
     });
     res.send(data);
@@ -40,7 +40,7 @@ app.get("/api/location", async (req, res) => {
   try {
     const { data } = await axios({
       method: "POST",
-      url: `https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCtjoNwnlu5EecNRzewqL95uS9hfnUljIU`
+      url: `https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_API_GEOLOCATE}`
     });
     res.send(data);
   } catch (error) {
@@ -57,7 +57,7 @@ app.get("/api/weather/:lat/:lng", async (req, res) => {
         req.params.lng
       }?lang=en&units=auto`,
       headers: {
-        "X-RapidAPI-Key": "efe599f8f6msh4a33ff28e73ed1ep16d441jsn618888df975b",
+        "X-RapidAPI-Key": process.env.REACT_APP_API_DARKSKY,
         "X-RapidAPI-Host": "dark-sky.p.rapidapi.com",
         accept: "application/json"
       }
@@ -77,7 +77,7 @@ app.get("/api/city/:lat/:lng", async (req, res) => {
         req.params.lng
       }/${
         req.params.lat
-      }/50?appId=a7c23de7&appKey=2f302012c2e552475508bee87ebb20bd`
+      }/50?appId=a7c23de7&appKey=${process.env.REACT_APP_API_FLIGHTSTATS}`
     });
     const arr = Array.from(data.airports);
     const item = arr.find((elt) => {
