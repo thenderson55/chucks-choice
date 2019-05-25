@@ -12,8 +12,8 @@ export default class RightPanel extends Component {
   render() {
     return (
       <div className="panel">
-        <h3 className="panel-h"> {this.props.temperature}</h3>
-        <h3>{this.props.summary}</h3>
+        <h3 className="panel-h"> {`${this.props.temperature}
+        ${this.props.summary}`}</h3>
       </div>
     );
   }
