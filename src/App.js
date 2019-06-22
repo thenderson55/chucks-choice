@@ -9,6 +9,7 @@ import Unsplash, { toJson } from "unsplash-js";
 import axios from "axios";
 import audio_clip from "./assets/chucknorris.mp3"
 import moment from "moment"
+
 require("dotenv").config()
 
 
@@ -77,7 +78,8 @@ class App extends React.Component {
       flightsData: "",
       date: "",
       carrier: "",
-      destination:""
+      destination:"",
+      icon:""
     };
   }
 
@@ -94,7 +96,7 @@ class App extends React.Component {
       })
       .then(() => {
         return axios
-          .get(`/api/city/${this.state.lat}/${this.state.lng}`)
+          .get(`/api/city/44.4377/26.0974`)
           .then((obj) => {
             this.setState({ city: obj.data.city, cityCode: obj.data.cityCode });
           });
@@ -106,7 +108,6 @@ class App extends React.Component {
         return axios
           .get(`/api/flights/${this.state.cityCode}/${this.state.destination.cityCode}/${this.state.depDate}`)
           .then((res) => {
-            console.log(res.data)
             this.setState({
               price: res.data.Quotes[0].MinPrice,
               date: res.data.Quotes[0].OutboundLeg.DepartureDate,
@@ -129,15 +130,14 @@ class App extends React.Component {
         axios
           .get(`/api/weather/${this.state.destination.lat}/${this.state.destination.lng}`)
           .then((res) => {
-
             this.setState({
-              temperature: `${res.data.currently.temperature}°`,
-              summary: res.data.currently.summary
+              temperature: `${res.data.currently.temperature}°C`,
+              summary: res.data.currently.summary,
+              icon:res.data.currently.icon
             });
           });
       });
   }
-
   handleClick = (event) => {
     //first play the audio
     const audio = new Audio(audio_clip);
@@ -210,6 +210,7 @@ class App extends React.Component {
                   <RightPanel
                     temperature={this.state.temperature}
                     summary={this.state.summary}
+                    icon ={this.state.icon}
                   />
                 </div>
               </div>

@@ -54,7 +54,7 @@ app.get("/api/weather/:lat/:lng", async (req, res) => {
       method: "GET",
       url: `https://dark-sky.p.rapidapi.com/${req.params.lat},${
         req.params.lng
-      }?lang=en&units=metric`,
+      }?lang=en&units=si`,
       headers: {
         "X-RapidAPI-Key": process.env.REACT_APP_API_DARKSKY,
         "X-RapidAPI-Host": "dark-sky.p.rapidapi.com",
@@ -70,7 +70,6 @@ app.get("/api/weather/:lat/:lng", async (req, res) => {
 });
 
 app.get("/api/city/:lat/:lng", async (req, res) => {
-  
   try {
     const { data } = await axios({
       method: "GET",
@@ -79,7 +78,7 @@ app.get("/api/city/:lat/:lng", async (req, res) => {
     });
     const arr = Array.from(data.airports);
     const item = arr.find((elt) => {
-      return elt.classification === 1;
+      return elt.classification === 1 || 2 || 3;
     });
     res.send({ city: item.city, cityCode: item.cityCode });
   } catch (error) {
