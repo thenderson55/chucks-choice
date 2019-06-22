@@ -62,14 +62,12 @@ class App extends React.Component {
       url: `https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_API_GEOLOCATE}`
     })
       .then((data) => {
-        console.log(data ,"googleapi latlng")
         this.setState({
           lat: data.data.location.lat,
           lng: data.data.location.lng
         });
       })
       .then(() => {
-        console.log(this.state)
         return axios
           .get(`/api/city/${this.state.lat}/${this.state.lng}`)
           .then((obj) => {
@@ -83,7 +81,6 @@ class App extends React.Component {
         return axios
           .get(`/api/flights/${this.state.cityCode}/${this.state.destination.cityCode}/${this.state.depDate}`)
           .then((res) => {
-            console.log(this.state.depDate)
             this.setState({
               price: res.data.Quotes[0].MinPrice,
               date: res.data.Quotes[0].OutboundLeg.DepartureDate,
@@ -97,7 +94,6 @@ class App extends React.Component {
           .photos(`${this.state.destination.city}`)
           .then(toJson)
           .then((json) => {
-
             this.setState({
               img: json.results[0].urls.small
             });

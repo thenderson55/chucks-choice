@@ -28,7 +28,6 @@ app.get("/api/flights/:org/:dest/:date", async (req, res) => {
         "X-RapidAPI-Key":process.env.REACT_APP_API_RAPID
       }
     });
-    console.log(data, "skyscanner2")
     res.send(data);
   } catch (error) {
     console.log(error);
@@ -81,7 +80,6 @@ app.get("/api/city/:lat/:lng", async (req, res) => {
     const item = arr.find((elt) => {
       return elt.classification === 1;
     });
-    console.log(item,"hhhhhhhhhhhhhhhh")
     res.send({ city: item.city, cityCode: item.cityCode });
   } catch (error) {
     console.log(error);
