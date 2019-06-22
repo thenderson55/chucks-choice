@@ -16,16 +16,15 @@ const server = app.listen(port, () => {
 app.get("/api/flights/:org/:dest/:date", async (req, res) => {
   const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${
     req.params.org
-  }/${req.params.dest}/${req.params.date}?inboundpartialdate=${
-    req.params.date
-  }`;
+  }/${req.params.dest}/${req.params.date}?inboundpartialdate=2019-10-28
+  }`
   try {
     const { data } = await axios({
       method: "GET",
       url,
       headers: {
         "X-RapidAPI-Host":
-          "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+"skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
         "X-RapidAPI-Key":process.env.REACT_APP_API_RAPID
       }
     });
@@ -70,14 +69,12 @@ app.get("/api/weather/:lat/:lng", async (req, res) => {
 });
 
 app.get("/api/city/:lat/:lng", async (req, res) => {
+  
   try {
     const { data } = await axios({
       method: "GET",
-      url: `https://api.flightstats.com/flex/airports/rest/v1/json/withinRadius/${
-        req.params.lng
-      }/${
-        req.params.lat
-      }/50?appId=a7c23de7&appKey=${process.env.REACT_APP_API_FLIGHTSTATS}`
+      url: `https://api.flightstats.com/flex/airports/rest/v1/json/withinRadius/${req.params.lng}/${req.params.lat
+      }/50?appId=3e66f39b&appKey=${process.env.REACT_APP_API_FLIGHTSTATS}`
     });
     const arr = Array.from(data.airports);
     const item = arr.find((elt) => {

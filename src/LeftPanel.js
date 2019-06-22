@@ -15,13 +15,12 @@ export default class LeftPanel extends Component {
 
   render() {
     return (
-      <div className="panel">
-        <h3 className="panel-h">{`You are flying from ${
-          this.props.city
-        } to ${this.props.destination.city} on ${this.props.date.slice(0, 10)} for $ ${
-          this.props.price
-        }`}</h3>
-      </div>
+
+         <div className="panel">
+            <h3 className="panel-h">{`You are flying from ${
+             this.props.city
+           } to ${this.props.destination.city} on ${this.props.date.slice(0, 10)} for $ ${this.props.price  }`}</h3>
+            </div>    
     );
   }
 }
