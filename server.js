@@ -54,7 +54,7 @@ app.get("/api/weather/:lat/:lng", async (req, res) => {
       method: "GET",
       url: `https://dark-sky.p.rapidapi.com/${req.params.lat},${
         req.params.lng
-      }?lang=en&units=metric`,
+      }?lang=en&units=si`,
       headers: {
         "X-RapidAPI-Key": process.env.REACT_APP_API_DARKSKY,
         "X-RapidAPI-Host": "dark-sky.p.rapidapi.com",

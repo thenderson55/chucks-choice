@@ -131,7 +131,7 @@ class App extends React.Component {
           .then((res) => {
 
             this.setState({
-              temperature: `${res.data.currently.temperature}°`,
+              temperature: `${res.data.currently.temperature}°C`,
               summary: res.data.currently.summary
             });
           });
