@@ -8,6 +8,7 @@ import "./App.css";
 import Unsplash, { toJson } from "unsplash-js";
 import axios from "axios";
 import audio_clip from "./assets/chucknorris.mp3"
+import moment from "moment"
 require("dotenv").config()
 
 
@@ -27,7 +28,7 @@ class App extends React.Component {
       ranImg:()=>{
         let destination = 0;
         const destList = [{city:"New York",cityCode:"JFK"},{city:"San Francisco",cityCode:"SFO"},{city:"Abu Dhabi",cityCode:"DOH"},{city:"Hawaii",cityCode:"HNL"}]
-        const ranNum = Math.floor(Math.random() * 3)
+        const ranNum = Math.floor(Math.random() * 4)
 
         for (let i = 0; i < destList.length; i++) {
           if(i=== ranNum){
@@ -36,6 +37,7 @@ class App extends React.Component {
        }
         return destination;
       },
+      depDate:(moment().add(3, 'days').format('YYYY-MM-DD')),
       img: "",
       city: "",
       cityCode: "",
@@ -71,7 +73,6 @@ class App extends React.Component {
         return axios
           .get(`/api/city/${this.state.lat}/${this.state.lng}`)
           .then((obj) => {
-            console.log(obj,"city")
             this.setState({ city: obj.data.city, cityCode: obj.data.cityCode });
           });
       })
@@ -80,8 +81,9 @@ class App extends React.Component {
           destination:this.state.ranImg()
         })
         return axios
-          .get(`/api/flights/TYO/SFO/2019-09-28`)
+          .get(`/api/flights/${this.state.cityCode}/${this.state.ranImg().cityCode}/${this.state.depDate}`)
           .then((res) => {
+            console.log(this.state.depDate)
             this.setState({
               price: res.data.Quotes[0].MinPrice,
               date: res.data.Quotes[0].OutboundLeg.DepartureDate,
@@ -92,7 +94,7 @@ class App extends React.Component {
       })
       .then(() => {
         return unsplash.search
-          .photos("San Francisco")
+          .photos(`${this.state.ranImg().city}`)
           .then(toJson)
           .then((json) => {
 
