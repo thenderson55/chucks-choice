@@ -63,15 +63,18 @@ class App extends React.Component {
       url: `https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_API_GEOLOCATE}`
     })
       .then((data) => {
+        console.log(data ,"googleapi latlng")
         this.setState({
           lat: data.data.location.lat,
           lng: data.data.location.lng
         });
       })
       .then(() => {
+        console.log(this.state)
         return axios
           .get(`/api/city/${this.state.lat}/${this.state.lng}`)
           .then((obj) => {
+            console.log(obj,"city")
             this.setState({ city: obj.data.city, cityCode: obj.data.cityCode });
           });
       })
@@ -80,7 +83,7 @@ class App extends React.Component {
           destination:this.state.ranImg()
         })
         return axios
-          .get(`/api/flights/${this.state.cityCode}/${this.state.destination.cityCode}-sky/2019-05-28`)
+          .get(`/api/flights/TYO/SFO/2019-09-28`)
           .then((res) => {
             this.setState({
               price: res.data.Quotes[0].MinPrice,
@@ -92,9 +95,10 @@ class App extends React.Component {
       })
       .then(() => {
         return unsplash.search
-          .photos(this.state.city, 1)
+          .photos("San Francisco")
           .then(toJson)
           .then((json) => {
+
             this.setState({
               img: json.results[0].urls.small
             });
