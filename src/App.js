@@ -96,7 +96,7 @@ class App extends React.Component {
       })
       .then(() => {
         return axios
-          .get(`/api/city/44.4377/26.0974`)
+          .get(`/api/city/${this.state.lat}/${this.state.lng}`)
           .then((obj) => {
             this.setState({ city: obj.data.city, cityCode: obj.data.cityCode });
           });
