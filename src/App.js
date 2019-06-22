@@ -81,7 +81,7 @@ class App extends React.Component {
           destination:this.state.ranImg()
         })
         return axios
-          .get(`/api/flights/${this.state.cityCode}/${this.state.ranImg().cityCode}/${this.state.depDate}`)
+          .get(`/api/flights/${this.state.cityCode}/${this.state.destination.cityCode}/${this.state.depDate}`)
           .then((res) => {
             console.log(this.state.depDate)
             this.setState({
@@ -94,7 +94,7 @@ class App extends React.Component {
       })
       .then(() => {
         return unsplash.search
-          .photos(`${this.state.ranImg().city}`)
+          .photos(`${this.state.destination.city}`)
           .then(toJson)
           .then((json) => {
 
