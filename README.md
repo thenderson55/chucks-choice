@@ -3,7 +3,7 @@
 Chuck's Choice is a humorous SPA created over 2 days by Florin Mavroian, Thomas Henderson and Ben Dyer during the Code Chrysalis Immersive Bootcamp in May 2019. 
 
 <p align="center">
-<img src="https://github.com/thenderson55/chucks-choice/blob/master/chuck-chooses-screenshot.png" width="300"/>
+<img src="https://i.postimg.cc/tgmST4HN/chuck-chooses-screenshot.png" width="300"/>
 </ p>
 
 The challenge was to build an application using as many APIs as possible from the Rakuten Rapid API service, and then present the app to leaders from the Rapid API team at Rakuten Crimson House Headquarters.
