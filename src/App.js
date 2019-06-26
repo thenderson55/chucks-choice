@@ -9,6 +9,7 @@ import Unsplash, { toJson } from "unsplash-js";
 import axios from "axios";
 import audio_clip from "./assets/chucknorris.mp3"
 import moment from "moment"
+
 require("dotenv").config()
 
 
@@ -27,14 +28,39 @@ class App extends React.Component {
     this.state = {
       ranImg:()=>{
         let destination = 0;
-        const destList = [{city:"New York",cityCode:"JFK"},{city:"San Francisco",cityCode:"SFO"},{city:"Abu Dhabi",cityCode:"DOH"},{city:"Hawaii",cityCode:"HNL"}]
-        const ranNum = Math.floor(Math.random() * 4)
-
-        for (let i = 0; i < destList.length; i++) {
-          if(i=== ranNum){
-            destination = destList[i]
+        const destList = [
+          {
+            city:"New York",
+            cityCode:"NYC",
+            lat: 40.718,
+            lng: -74
+          },
+          {
+            city:"San Francisco",
+            cityCode:"SFO",
+            lat: 37.7749,
+            lng: -122.4194
+          },
+          {
+            city:"Abu Dhabi",
+            cityCode:"DOH",
+            lat: 24.4667, 
+            lng: 54.36667
+          },
+          {
+            city:"Honolulu",
+            cityCode:"HNL",
+            lat: 21.3069,
+            lng: -157.8584
           }
-       }
+        ]
+        const ranNum = Math.floor(Math.random() * 4)
+        destination = destList[ranNum]
+      //   for (let i = 0; i < destList.length; i++) {
+      //     if(i=== ranNum){
+      //       destination = destList[i]
+      //     }
+      //  }
         return destination;
       },
       depDate:(moment().add(3, 'days').format('YYYY-MM-DD')),
@@ -52,7 +78,8 @@ class App extends React.Component {
       flightsData: "",
       date: "",
       carrier: "",
-      destination:""
+      destination:"",
+      icon:""
     };
   }
 
@@ -101,16 +128,16 @@ class App extends React.Component {
       })
       .then(() => {
         axios
-          .get(`/api/weather/${this.state.lat}/${this.state.lng}`)
+          .get(`/api/weather/${this.state.destination.lat}/${this.state.destination.lng}`)
           .then((res) => {
             this.setState({
               temperature: `${res.data.currently.temperature}°C`,
-              summary: res.data.currently.summary
+              summary: res.data.currently.summary,
+              icon:res.data.currently.icon
             });
           });
       });
   }
-
   handleClick = (event) => {
     //first play the audio
     const audio = new Audio(audio_clip);
@@ -183,6 +210,7 @@ class App extends React.Component {
                   <RightPanel
                     temperature={this.state.temperature}
                     summary={this.state.summary}
+                    icon ={this.state.icon}
                   />
                 </div>
               </div>
