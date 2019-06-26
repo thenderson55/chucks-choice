@@ -25,7 +25,7 @@ export default class ChucksJoke extends React.Component {
     const myInit = { method: "GET", headers: myHeaders };
 
     const myRequest = new Request(
-      "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random",
+      "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/travel",
       myInit
     );
 
